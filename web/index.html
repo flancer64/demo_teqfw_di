@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@teqfw/di demo</title>
+    <script type="module">
+        const baseUrl = location.href;
+        // load DI container as ES6 module (w/o namespaces)
+        import(baseUrl + 'node_modules/@teqfw/di/src/Container.mjs').then(async (modContainer) => {
+            // init container and setup namespaces mapping
+            /** @type {TeqFw_Di_Container} */
+            const container = new modContainer.default();
+            const pathMain = baseUrl + 'node_modules/@flancer64/demo_teqfw_di_mod_main/src';
+            const pathPlugin = baseUrl + 'node_modules/@flancer64/demo_teqfw_di_mod_plugin/src';
+            container.addSourceMapping('Demo_Main', pathMain, true, 'mjs');
+            container.addSourceMapping('Demo_Main_Plugin', pathPlugin, true, 'mjs');
+            // get main front as singleton
+            /** @type {Demo_Main_Front} */
+            const frontMain = await container.get('Demo_Main_Front$');
+            frontMain.out('#main', '#plugin');
+        });
+    </script>
+</head>
+<body>
+<h3>API links to server side services:</h3>
+<ul>
+    <li><a href="/api/main" target="_blank">/api/main</a></li>
+    <li><a href="/api/main/plugin" target="_blank">/api/main/plugin</a></li>
+</ul>
+<h3>Composed by frontend code:</h3>
+<div id="main"></div>
+<div id="plugin"></div>
+</body>
+</html>

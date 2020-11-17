@@ -1,0 +1,9 @@
+/**/node_modules/
+/**/package-lock.json
+/**/ttttest.*
+/.idea/
+/atlassian-ide-plugin.xml
+/cfg/local.json
+/composer.lock
+/tmp/
+/var/server.pid
