@@ -5,7 +5,7 @@
 ```
 $ git clone https://github.com/flancer64/demo_teqfw_di.git
 $ cd demo_teqfw_di
-$ npm instsall
+$ npm install
 $ npm start
 ```
 Goto http://localhost:3000/
